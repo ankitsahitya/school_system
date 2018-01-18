@@ -1,0 +1,21 @@
+<p>
+  <strong>Name:</strong>
+  <%= teacher.name %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= teacher.address %>
+</p>
+<p>
+  <strong>Phone No:</strong>
+  <%= teacher.phone_no %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= teacher.gender %>
+</p>
+<p>
+	<%= link_to 'show', teacher_path(teacher) %>
+  <%= link_to 'Delete teacher', [teacher], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_teacher_path(teacher) %>
+</p>

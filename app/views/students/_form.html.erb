@@ -1,0 +1,23 @@
+<%= form_for @classroom.students.build do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+    <%= form.hidden_field :classroom_id, :value => @classroom.id %>
+  </p>
+  <p>
+    <%= form.label :phone_no %><br>
+    <%= form.text_area :phone_no %>
+  </p>
+  <p>
+    <%= form.label :gender %><br>
+    <%= form.text_area :gender %>
+    <%= form.hidden_field :school_id, :value => @classroom.school.id %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

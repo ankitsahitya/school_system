@@ -1,0 +1,9 @@
+<p>
+  <strong>Name:</strong>
+  <%= subject.name %>
+</p>
+<p>
+	<%= link_to 'show', subject_path(subject) %>
+  <%= link_to 'Destroy subject', [subject], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_subject_path(subject) %>
+</p>

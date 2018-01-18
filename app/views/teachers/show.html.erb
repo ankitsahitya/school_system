@@ -1,0 +1,50 @@
+<p>
+  <strong>Id:</strong>
+  <%= @teacher.id %>
+</p>
+<p>
+  <strong>School:</strong>
+  <%= @teacher.school.name %>
+</p>
+<p>
+  <strong>name:</strong>
+  <%= @teacher.name %>
+</p>
+<p>
+  <strong>address:</strong>
+  <%= @teacher.address %>
+</p>
+<p>
+  <strong>Phone no:</strong>
+  <%= @teacher.phone_no %>
+</p>
+<p>
+  <strong>gender:</strong>
+  <%= @teacher.gender %>
+</p>
+ <h2>Subjects</h2>
+<%= render @teacher.subjects %>
+<h2>Add a subject:</h2>
+<%= form_tag(controller:"teachers", action:"add_subject", method: "post") do %>
+  <p>
+    <label for="Subject">subject</label><br>
+    <input type="text" name="subject_id" id="subject_id">
+  </p>
+  <p>
+    <input type="submit" name="submit">
+  </p>
+<% end %> 
+<h2>Classrooms</h2>
+<%= render @teacher.classrooms %>
+<h2>Add a classroom:</h2>
+<%= form_tag(controller:"teachers", action:"add_classroom", method: "post") do %>
+  <p>
+    <label for="Classroom">classroom</label><br>
+    <input type="text" name="classroom_id" id="classroom_id">
+  </p>
+  <p>
+    <input type="submit" name="submit">
+  </p>
+<% end %> 
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>

@@ -41,7 +41,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
     respond_to do |format|
       @teacher.destroy
-      format.html { redirect_to teachers_path }
+      format.html { redirect_to school_path(@teacher.school) }
       format.json { render json: {}, status: :ok }
     end
   rescue ActiveRecord::RecordNotFound => e

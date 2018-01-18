@@ -1,0 +1,30 @@
+<p>
+  <strong>Id:</strong>
+  <%= @school.id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= @school.address %>
+</p>
+<p>
+  <strong>Phone No:</strong>
+  <%= @school.phone_no %>
+</p>
+<p>
+  <strong>code:</strong>
+  <%= @school.code %>
+</p>
+<h2>Classrooms</h2>
+<%= render @school.classrooms %>
+<h2>Add a classroom:</h2>
+<%= render 'classrooms/form' %>
+<h2>Teachers</h2>
+<%= render @school.teachers %>
+<h2>Add a teacher:</h2>
+<%= render 'teachers/form' %>
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>

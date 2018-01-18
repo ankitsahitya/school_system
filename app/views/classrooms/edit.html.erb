@@ -1,0 +1,15 @@
+<h1>Edit Classroom</h1>
+	<%= form_for @classroom do |form| %>
+		<p>
+			<%= form.label :room_no %><br>
+			<%= form.text_field :room_no %>
+		</p>
+		<p>
+			<%= form.label :class_no %><br>
+			<%= form.text_area :class_no %>
+		</p>
+		<p>
+			<%= form.submit %>
+		</p>
+	<% end %>
+<%= link_to 'Back', school_path %>

@@ -1,0 +1,42 @@
+<p>
+  <strong>Id:</strong>
+  <%= @student.id %>
+</p>
+<p>
+  <strong>School:</strong>
+  <%= @student.school.name %>
+</p>
+<p>
+  <strong>Class:</strong>
+  <%= @student.classroom.class_no %>
+</p>
+<p>
+  <strong>name:</strong>
+  <%= @student.name %>
+</p>
+<p>
+  <strong>address:</strong>
+  <%= @student.address %>
+</p>
+<p>
+  <strong>phone no:</strong>
+  <%= @student.phone_no %>
+</p>
+<p>
+  <strong>gender:</strong>
+  <%= @student.gender %>
+</p>
+<h2>Subjects</h2>
+<%= render @student.subjects %>
+<h2>Add a subject:</h2>
+<%= form_tag(controller:"students", action:"add_subject", method: "post") do %>
+  <p>
+    <label for="Subject">subject</label><br>
+    <input type="text" name="subject_id" id="subject_id">
+  </p>
+  <p>
+    <input type="submit" name="submit">
+  </p>
+<% end %> 
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

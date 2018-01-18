@@ -1,0 +1,34 @@
+<p>
+  <strong>Id:</strong>
+  <%= @classroom.id %>
+</p>
+<p>
+  <strong>School:</strong>
+  <%= @classroom.school.name %>
+</p>
+<p>
+  <strong>Room no.:</strong>
+  <%= @classroom.room_no %>
+</p>
+<p>
+  <strong>Class no.:</strong>
+  <%= @classroom.class_no %>
+</p>
+<h2>Students</h2>
+<%= render @classroom.students %>
+<h2>Add a student:</h2>
+<%= render 'students/form' %>
+<h2>Teachers</h2>
+<%= render @classroom.teachers %>
+<h2>Add a teacher:</h2>
+<%= form_tag(controller:"classrooms", action:"add_teacher", method: "post") do %>
+  <p>
+    <label for="Teacher">teacher</label><br>
+    <input type="text" name="teacher_id" id="teacher_id">
+  </p>
+  <p>
+    <input type="submit" name="submit">
+  </p>
+<% end %> 
+<%= link_to 'Edit', edit_classroom_path(@classroom) %> |
+<%= link_to 'Back', classrooms_path %>

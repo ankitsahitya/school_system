@@ -1,0 +1,22 @@
+<%= form_for @school.teachers.build do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </p>
+  <p>
+    <%= form.label :phone_no %><br>
+    <%= form.text_field :phone_no %>
+  </p>
+  <p>
+    <%= form.label :gender %><br>
+    <%= form.text_field :gender %>
+    <%= form.hidden_field :school_id, :value => @school.id %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

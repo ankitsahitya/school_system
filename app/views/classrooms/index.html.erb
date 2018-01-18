@@ -1,0 +1,19 @@
+<h1>Listing classrooms</h1>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>School</th>
+    <th>Room no</th>
+    <th>Class no</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @classrooms.each do |classroom| %>
+    <tr>
+      <td><%= classroom.id %></td>
+      <td><%= classroom.school.name %></td>
+      <td><%= classroom.room_no %></td>
+      <td><%= classroom.class_no %></td>
+      <td><%= link_to 'Show', classroom_path(classroom) %></td>
+    </tr>
+  <% end %>
+</table>

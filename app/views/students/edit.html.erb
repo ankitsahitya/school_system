@@ -1,0 +1,23 @@
+<h1>Edit student</h1>
+	<%= form_for @student do |form| %>
+		<p>
+			<%= form.label :name %><br>
+			<%= form.text_field :name %>
+		</p>
+		<p>
+			<%= form.label :address %><br>
+			<%= form.text_area :address %>
+		</p>
+		<p>
+			<%= form.label :phone_no %><br>
+			<%= form.text_area :phone_no %>
+		</p>
+		<p>
+			<%= form.label :gender %><br>
+			<%= form.text_area :gender %>
+		</p>
+		<p>
+			<%= form.submit %>
+		</p>
+	<% end %>
+<%= link_to 'Back', classroom_path %>

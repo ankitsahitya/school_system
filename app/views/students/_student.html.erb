@@ -1,0 +1,21 @@
+<p>
+  <strong>Name:</strong>
+  <%= student.name %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= student.address %>
+</p>
+<p>
+  <strong>Phone no:</strong>
+  <%= student.phone_no %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%= student.gender %>
+</p>
+<p>
+	<%= link_to 'show', student_path(student) %>
+  <%= link_to 'Destroy student', [student], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_student_path(student) %>
+</p>

@@ -1,0 +1,13 @@
+<p>
+  <strong>Room No:</strong>
+  <%= classroom.room_no %>
+</p>
+<p>
+  <strong>Class No:</strong>
+  <%= classroom.class_no %>
+</p>
+<p>
+	<%= link_to 'show', classroom_path(classroom) %>
+  <%= link_to 'Destroy Classroom', [classroom], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_classroom_path(classroom) %>
+</p>
