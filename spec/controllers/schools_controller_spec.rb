@@ -21,7 +21,7 @@ RSpec.describe SchoolsController, type: :controller do
     end
 
     it 'should not get invalid school' do
-      get :show, id: '12345', format: 'json'
+      get :show, id: Faker::Name.name, format: 'json'
       response.should have_http_status(:not_found)
     end
   end
@@ -47,19 +47,18 @@ RSpec.describe SchoolsController, type: :controller do
     end
 
     it 'should not get school with invalid id' do
-      get :edit, id: '12345', format: 'json'
+      get :edit, id: Faker::Name.name, format: 'json'
       response.should have_http_status(:not_found)
     end
   end
 
   context 'POST#create' do
     it 'should create school successfully' do
-      school = FactoryGirl.create(:school)
-      post :create, school: { name: school.name, address: school.address, phone_no: school.phone_no, code: school.code }, format: 'json'
-      assigns(:school).name.should eq school.name
-      assigns(:school).address.should eq school.address
-      assigns(:school).phone_no.should eq school.phone_no
-      assigns(:school).code.should eq school.code
+      post :create, school: { name: 'MMPS', address: '1012 Kristin Underpass', phone_no: '1234567890', code: '3A53F' }, format: 'json'
+      assigns(:school).name.should eq 'MMPS'
+      assigns(:school).address.should eq '1012 Kristin Underpass'
+      assigns(:school).phone_no.should eq '1234567890'
+      assigns(:school).code.should eq '3A53F'
       response.should have_http_status(:created)
     end
 
@@ -90,7 +89,7 @@ RSpec.describe SchoolsController, type: :controller do
 
     it 'should not update school with invalid school' do
       school2 = FactoryGirl.create(:school)
-      put :update, id: '123456', school: { name: school2.name, address: school2.address, phone_no: school2.phone_no, code: school2.code }, format: 'json'
+      put :update, id: Faker::Name.name, school: { name: school2.name, address: school2.address, phone_no: school2.phone_no, code: school2.code }, format: 'json'
       response.should have_http_status(:unprocessable_entity)
     end
   end
@@ -104,7 +103,7 @@ RSpec.describe SchoolsController, type: :controller do
     end
 
     it 'should not destroy invalid school' do
-      delete :destroy, id: '12345', format: 'json'
+      delete :destroy, id: Faker::Name.name, format: 'json'
       response.should have_http_status(:unprocessable_entity)
     end
   end

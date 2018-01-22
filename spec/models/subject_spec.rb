@@ -13,9 +13,10 @@ RSpec.describe Subject, type: :model do
 
   context 'subject associations' do
     it 'should has many teachers' do
+      school = FactoryGirl.create(:school)
       @subject = FactoryGirl.create(:subject)
-      @teacher1 = FactoryGirl.create(:teacher)
-      @teacher2 = FactoryGirl.create(:teacher)
+      @teacher1 = FactoryGirl.create(:teacher, school_id: school.id)
+      @teacher2 = FactoryGirl.create(:teacher, school_id: school.id)
       @subject.teachers << @teacher1
       @subject.teachers << @teacher2
       @subject.teachers.should include @teacher1
@@ -23,10 +24,11 @@ RSpec.describe Subject, type: :model do
     end
 
     it 'should not has unincluded teachers' do
+      school = FactoryGirl.create(:school)
       @subject1 = FactoryGirl.create(:subject)
       @subject2 = FactoryGirl.create(:subject)
-      @teacher1 = FactoryGirl.create(:teacher)
-      @teacher2 = FactoryGirl.create(:teacher)
+      @teacher1 = FactoryGirl.create(:teacher, school_id: school.id)
+      @teacher2 = FactoryGirl.create(:teacher, school_id: school.id)
       @subject1.teachers << @teacher1
       @subject2.teachers << @teacher2
       @subject1.teachers.should include @teacher1
@@ -36,9 +38,11 @@ RSpec.describe Subject, type: :model do
     end
 
     it 'should has many students' do
+      school = FactoryGirl.create(:school)
+      classroom = FactoryGirl.create(:classroom, school_id: school.id)
       @subject = FactoryGirl.create(:subject)
-      @student1 = FactoryGirl.create(:student)
-      @student2 = FactoryGirl.create(:student)
+      @student1 = FactoryGirl.create(:student, classroom_id: classroom.id)
+      @student2 = FactoryGirl.create(:student, classroom_id: classroom.id)
       @subject.students << @student1
       @subject.students << @student2
       @subject.students.should include @student1
@@ -46,10 +50,12 @@ RSpec.describe Subject, type: :model do
     end
 
     it 'should not has unincluded students' do
+      school = FactoryGirl.create(:school)
+      classroom = FactoryGirl.create(:classroom, school_id: school.id)
       @subject1 = FactoryGirl.create(:subject)
       @subject2 = FactoryGirl.create(:subject)
-      @student1 = FactoryGirl.create(:student)
-      @student2 = FactoryGirl.create(:student)
+      @student1 = FactoryGirl.create(:student, classroom_id: classroom.id)
+      @student2 = FactoryGirl.create(:student, classroom_id: classroom.id)
       @subject1.students << @student1
       @subject2.students << @student2
       @subject1.students.should include @student1

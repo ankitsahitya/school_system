@@ -21,7 +21,7 @@ RSpec.describe SubjectsController, type: :controller do
     end
 
     it 'should not get invalid subject' do
-      get :show, id: '12345', format: 'json'
+      get :show, id: Faker::Name.name, format: 'json'
       response.should have_http_status(:not_found)
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe SubjectsController, type: :controller do
     end
 
     it 'should not get subject with invalid id' do
-      get :edit, id: '12345', format: 'json'
+      get :edit, id: Faker::Name.name, format: 'json'
       response.should have_http_status(:not_found)
     end
   end
@@ -52,8 +52,8 @@ RSpec.describe SubjectsController, type: :controller do
   context 'POST#create' do
     it 'should create subject successfully' do
       subject = FactoryGirl.create(:subject)
-      post :create, subject: { name: subject.name }, format: 'json'
-      assigns(:subject).name.should eq subject.name
+      post :create, subject: { name: 'physics' }, format: 'json'
+      assigns(:subject).name.should eq 'physics'
       response.should have_http_status(:created)
     end
 
@@ -65,46 +65,55 @@ RSpec.describe SubjectsController, type: :controller do
 
   context 'POST#add_teacher' do
     it 'should add new teacher for the subject' do
+      school =FactoryGirl.create(:school)
       subject = FactoryGirl.create(:subject)
-      teacher = FactoryGirl.create(:teacher)
+      teacher = FactoryGirl.create(:teacher, school_id: school.id)
       post :add_teacher, id: subject.id, teacher_id: teacher.id
       response.should have_http_status(:ok)
     end
 
     it 'should add empty teacher for the subject' do
+      school =FactoryGirl.create(:school)
       subject = FactoryGirl.create(:subject)
-      teacher = FactoryGirl.create(:teacher)
+      teacher = FactoryGirl.create(:teacher, school_id: school.id)
       post :add_teacher, id: subject.id, teacher_id: nil
       response.should have_http_status(:unprocessable_entity)
     end
 
     it 'should add invalid teacher for the subject' do
+      school =FactoryGirl.create(:school)
       subject = FactoryGirl.create(:subject)
-      teacher = FactoryGirl.create(:teacher)
-      post :add_teacher, id: subject.id, teacher_id: '123456'
+      teacher = FactoryGirl.create(:teacher, school_id: school.id)
+      post :add_teacher, id: subject.id, teacher_id: Faker::Name.name
       response.should have_http_status(:unprocessable_entity)
     end
   end
 
   context 'POST#add_student' do
     it 'should add new student for the subject' do
+      school =FactoryGirl.create(:school)
+      classroom =FactoryGirl.create(:classroom, school_id: school.id)
       subject = FactoryGirl.create(:subject)
-      student = FactoryGirl.create(:student)
+      student = FactoryGirl.create(:student, classroom_id: classroom.id)
       post :add_student, id: subject.id, student_id: student.id
       response.should have_http_status(:ok)
     end
 
     it 'should add empty student for the subject' do
+      school =FactoryGirl.create(:school)
+      classroom =FactoryGirl.create(:classroom, school_id: school.id)
       subject = FactoryGirl.create(:subject)
-      student = FactoryGirl.create(:student)
+      student = FactoryGirl.create(:student, classroom_id: classroom.id)
       post :add_student, id: subject.id, student_id: nil
       response.should have_http_status(:unprocessable_entity)
     end
 
     it 'should add invalid student for the subject' do
+      school =FactoryGirl.create(:school)
+      classroom =FactoryGirl.create(:classroom, school_id: school.id)
       subject = FactoryGirl.create(:subject)
-      student = FactoryGirl.create(:student)
-      post :add_student, id: subject.id, student_id: '123456'
+      student = FactoryGirl.create(:student, classroom_id: classroom.id)
+      post :add_student, id: subject.id, student_id: Faker::Name.name
       response.should have_http_status(:unprocessable_entity)
     end
   end
@@ -141,7 +150,7 @@ RSpec.describe SubjectsController, type: :controller do
     end
 
     it 'should not destroy invalid subject' do
-      delete :destroy, id: '12345', format: 'json'
+      delete :destroy, id: Faker::Name.name, format: 'json'
       response.should have_http_status(:unprocessable_entity)
     end
   end

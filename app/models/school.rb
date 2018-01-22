@@ -1,5 +1,4 @@
 class School < ActiveRecord::Base
-  has_many :students, dependent: :destroy
   has_many :teachers, dependent: :destroy
   has_many :classrooms, dependent: :destroy
   validates :name, :address, :phone_no, :code, presence: true

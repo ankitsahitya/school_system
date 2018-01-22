@@ -23,15 +23,15 @@ RSpec.describe School, type: :model do
     end
 
     it 'should invalid with short phone_no' do
-      FactoryGirl.build(:school, phone_no: '7982317').should_not be_valid
+      FactoryGirl.build(:school, phone_no: Faker::Number.number(6)).should_not be_valid
     end
 
     it 'should invalid with long phone_no' do
-      FactoryGirl.build(:school, phone_no: '8978237874794734797288799').should_not be_valid
+      FactoryGirl.build(:school, phone_no: Faker::Number.number(16)).should_not be_valid
     end
 
     it 'should invalid with invalid phone_no' do
-      FactoryGirl.build(:school, phone_no: 'asdfg').should_not be_valid
+      FactoryGirl.build(:school, phone_no: Faker::Name.name).should_not be_valid
     end
   end
 
@@ -72,25 +72,6 @@ RSpec.describe School, type: :model do
       @school1.teachers.should_not include @teacher2
       @school2.teachers.should include @teacher2
       @school2.teachers.should_not include @teacher1
-    end
-
-    it 'should has many students' do
-      @school = FactoryGirl.create(:school)
-      @student1 = FactoryGirl.create(:student, school_id: @school.id)
-      @student2 = FactoryGirl.create(:student, school_id: @school.id)
-      @school.students.should include @student1
-      @school.students.should include @student2
-    end
-
-    it 'should not has unincluded teachers' do
-      @school1 = FactoryGirl.create(:school)
-      @student1 = FactoryGirl.create(:student, school_id: @school1.id)
-      @school2 = FactoryGirl.create(:school)
-      @student2 = FactoryGirl.create(:student, school_id: @school2.id)
-      @school1.students.should include @student1
-      @school1.students.should_not include @student2
-      @school2.students.should include @student2
-      @school2.students.should_not include @student1
     end
   end
 end

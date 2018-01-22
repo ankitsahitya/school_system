@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20180114044834) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.integer  "school_id",    limit: 4
     t.integer  "classroom_id", limit: 4
     t.string   "name",         limit: 255
     t.string   "address",      limit: 255
@@ -52,7 +51,6 @@ ActiveRecord::Schema.define(version: 20180114044834) do
   end
 
   add_index "students", ["classroom_id"], name: "index_students_on_classroom_id", using: :btree
-  add_index "students", ["school_id"], name: "index_students_on_school_id", using: :btree
 
   create_table "students_subjects", id: false, force: :cascade do |t|
     t.integer "student_id", limit: 4
@@ -92,7 +90,6 @@ ActiveRecord::Schema.define(version: 20180114044834) do
   add_foreign_key "classrooms_teachers", "classrooms"
   add_foreign_key "classrooms_teachers", "teachers"
   add_foreign_key "students", "classrooms"
-  add_foreign_key "students", "schools"
   add_foreign_key "students_subjects", "students"
   add_foreign_key "students_subjects", "subjects"
   add_foreign_key "subjects_teachers", "subjects"

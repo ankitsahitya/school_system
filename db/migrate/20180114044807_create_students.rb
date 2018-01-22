@@ -1,7 +1,6 @@
 class CreateStudents < ActiveRecord::Migration
   def change
     create_table :students do |t|
-      t.references :school, index: true, foreign_key: true
       t.references :classroom, index: true, foreign_key: true
       t.string :name
       t.string :address
